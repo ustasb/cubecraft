@@ -7,7 +7,7 @@ It's not the prettiest code!
 
 ## Usage
 1. `python -m SimpleHTTPServer`
-2. Navigate to http://localhost:8000, using Google Chrome.
+2. Navigate to http://localhost:8000, using Chrome.
 
 ## Controls
 - Fly through the world using WASD, Shift (fly down), Space (fly up) and your mouse.
