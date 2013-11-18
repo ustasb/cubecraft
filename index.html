@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>CS4300 - Cubecraft</title>
+    <meta charset="utf-8" />
+    <link type="text/css" rel="stylesheet" href="css/cubecraft.css" />
+
+    <script id="cube-vertex" type="shader-x/vertex">
+      attribute vec3 a_vertexPos;
+      attribute vec3 a_vertexNormal;
+      attribute vec2 a_textureCoord;
+
+      uniform mat4 u_mvMatrix;
+      uniform mat4 u_pMatrix;
+      uniform mat3 u_nMatrix;
+
+      uniform vec3 u_ambientColor;
+      uniform vec3 u_lightingDirection;
+      uniform vec3 u_directionalColor;
+
+      varying vec2 v_textureCoord;
+      varying vec3 v_lightWeight;
+      varying vec4 v_fogColor;
+      varying float v_fog;
+
+      void main() {
+        vec4 finalPosition = u_pMatrix * u_mvMatrix * vec4(a_vertexPos, 1.0);
+        gl_Position = finalPosition;
+
+        v_textureCoord = a_textureCoord;
+
+        // Directional and ambient lighting
+        vec3 transformedNormal = u_nMatrix * a_vertexNormal;
+        float directionalLightWeight = max(dot(transformedNormal, u_lightingDirection), 0.0);
+        v_lightWeight = u_ambientColor + u_directionalColor * directionalLightWeight;
+
+        // Fog implemented as demonstrated here:
+        // http://www.geeks3d.com/20100228/fog-in-glsl-webgl/
+        float fogCoord;
+        float fogEnd = 75.0;
+        fogCoord = abs(finalPosition.z);
+        fogCoord = clamp(fogCoord, 0.0, fogEnd);
+        v_fog = (fogEnd - fogCoord) / fogEnd;
+        v_fog = clamp(v_fog, 0.0, 1.0);
+        v_fogColor = vec4(0.53, 0.81, 0.98, 1.0);
+      }
+    </script>
+
+    <script id="cube-fragment" type="shader-x/fragment">
+      precision mediump float;
+
+      varying vec2 v_textureCoord;
+      varying vec3 v_lightWeight;
+      varying vec4 v_fogColor;
+      varying float v_fog;
+
+      uniform sampler2D u_sampler;
+
+      void main() {
+        // Grab a pixel from the supplied texture
+        vec4 textureColor = texture2D(u_sampler, vec2(v_textureCoord.s, v_textureCoord.t));
+
+        // Perform a linear interpolation over all the mix(...) values
+        gl_FragColor = mix(v_fogColor, vec4(textureColor.rgb * v_lightWeight, textureColor.a), v_fog);
+      }
+    </script>
+
+  </head>
+  <body>
+    <div id="crosshair">
+      <div class="horizontal"></div>
+      <div class="vertical"></div>
+      <div class="horizontal border-kill"></div>
+    </div>
+    <canvas id="viewport">
+      Your browser does not support WebGL.
+    </canvas>
+
+    <script src="vendor/jquery-1.9.1.min.js"></script>
+    <script src="vendor/gl-matrix-min.js"></script>
+    <script src="vendor/stats.js"></script>
+    <script src="vendor/perlin-noise.js"></script>
+
+    <script src="lib/webgl_helpers.js"></script>
+    <script src="lib/gl_cube_helper.js"></script>
+    <script src="lib/chunk_manager.js"></script>
+    <script src="lib/player.js"></script>
+    <script src="lib/cubecraft.js"></script>
+
+    <script> Cubecraft.init(); </script>
+  </body>
+</html>
