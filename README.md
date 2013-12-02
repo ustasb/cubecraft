@@ -14,6 +14,6 @@ It's not the prettiest code!
 - Left click to place a block.
 - Right click to remove a block.
 
-## Texture Credit:
+## Texture Credit
 John Smith Legacy v1.0.2 Minecraft Texture Pack
 http://jslegacy.com/
