@@ -71,25 +71,39 @@ window.Cubecraft =
       @canvas.height = window.innerHeight
       @aspect = window.innerWidth / window.innerHeight
       @gl.viewport(0, 0, @canvas.width, @canvas.height)
+
     resizeWindow()
 
     # Record the mouse's movements while captured
     mousemove = (e) =>
-      @mouse_movement.x = e.webkitMovementX
-      @mouse_movement.y = e.webkitMovementY
+      @mouse_movement.x = e.movementX || e.mozMovementX || e.webkitMovementX || 0
+      @mouse_movement.y = e.movementY || e.mozMovementY || e.webkitMovementY || 0
 
     # Enable mouse-capturing by the browser
     # http://www.chromium.org/developers/design-documents/mouse-lock
     pointerLockChange = =>
-      if document.webkitPointerLockElement == @canvas
+      if document.pointerLockElement == @canvas or
+         document.mozPointerLockElement == @canvas or
+         document.webkitPointerLockElement == @canvas
         document.addEventListener('mousemove', mousemove, false)
       else
         document.removeEventListener('mousemove', mousemove, false)
-    document.addEventListener('webkitpointerlockchange', pointerLockChange, false)
+
+    if 'onpointerlockchange' of document
+      document.addEventListener('pointerlockchange', pointerLockChange, false)
+    else if 'onmozpointerlockchange' of document
+      document.addEventListener('mozpointerlockchange', pointerLockChange, false)
+    else
+      document.addEventListener('webkitpointerlockchange', pointerLockChange, false)
 
     # Capture mouse events
     $(@canvas).mousedown (e) =>
-      @canvas.webkitRequestPointerLock()
+      if @canvas.requestPointerLock
+        @canvas.requestPointerLock()
+      else if @canvas.mozRequestPointerLock
+        @canvas.mozRequestPointerLock()
+      else
+        @canvas.webkitRequestPointerLock()
 
       switch e.which
         when @KEY_CODES.LEFT_MOUSE
