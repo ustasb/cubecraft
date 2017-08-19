@@ -1,12 +1,16 @@
-FROM ubuntu:14.04
+FROM alpine:3.6
 MAINTAINER Brian Ustas <brianustas@gmail.com>
 
-RUN apt-get -y update && \
-    apt-get -y install git
+ARG APP_PATH="/srv/www/cubecraft"
 
-RUN git clone https://github.com/ustasb/cubecraft.git /srv/www/cubecraft && \
-    rm -rf /srv/www/cubecraft/.git
+RUN apk add --update \
+  nodejs \
+  nodejs-npm \
+  && rm -rf /var/cache/apk/*
 
-WORKDIR /srv/www/cubecraft
+# CoffeeScript
+RUN npm install -g coffeescript@1.6.3
 
-VOLUME /srv/www/cubecraft
+WORKDIR $APP_PATH
+COPY . $APP_PATH
+VOLUME $APP_PATH
