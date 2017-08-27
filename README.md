@@ -7,6 +7,8 @@ It's not the prettiest code!
 
 Texture Credit: John Smith Legacy v1.0.2 Minecraft Texture Pack - http://jslegacy.com
 
+Initial release: 12/02/13
+
 ## Controls
 
 - Fly through the world using WASD, Shift (fly down), Space (fly up) and your mouse.
@@ -15,19 +17,28 @@ Texture Credit: John Smith Legacy v1.0.2 Minecraft Texture Pack - http://jslegac
 
 ## Usage
 
-1. `python -m SimpleHTTPServer`
-2. Navigate to `http://localhost:8000`, using **Chrome**.
-
-## Development
-
-First, build the Docker image:
+First build the Docker image:
 
     docker build -t cubecraft .
 
-Compile CoffeeScript with:
+Compile SASS and CoffeeScript with:
 
-    ./recompile_assets.sh
+    rake docker_build_dist
 
-To recompile assets when files change:
+    # To recompile assets when files change (uses fswatch):
 
-    fswatch -o src | xargs -n1 -I{} ./recompile_assets.sh
+    rake docker_build_dist_and_watch
+
+Serve assets via a local server:
+
+    cd src && python -m SimpleHTTPServer
+
+Navigate to `http://localhost:8000` in your browser.
+
+## Production
+
+To build the `public/` folder:
+
+    rake docker_build_public
+
+Open `public/index.html`.

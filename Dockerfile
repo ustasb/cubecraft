@@ -1,7 +1,7 @@
-FROM alpine:3.6
+FROM ruby:2.4.1-alpine3.6
 MAINTAINER Brian Ustas <brianustas@gmail.com>
 
-ARG APP_PATH="/srv/www/cubecraft"
+ARG APP_PATH="/opt/cubecraft"
 
 RUN apk add --update \
   nodejs \
@@ -13,4 +13,7 @@ RUN npm install -g coffeescript@1.6.3
 
 WORKDIR $APP_PATH
 COPY . $APP_PATH
+
+RUN rake build_public
+
 VOLUME $APP_PATH
