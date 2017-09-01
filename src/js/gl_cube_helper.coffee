@@ -29,7 +29,7 @@ class window.GLCubeHelper
     @program.lightingDirectionLocation = gl.getUniformLocation(@program, 'u_lightingDirection')
     @program.directionalColorLocation = gl.getUniformLocation(@program, 'u_directionalColor')
 
-    WebGLHelpers.initTexture gl, 'textures/stonebricksmooth_carved.png', (glTexture) =>
+    WebGLHelpers.initTexture gl, 'img/textures/stonebricksmooth_carved.png', (glTexture) =>
       @texture = glTexture
       onReady(this)
 

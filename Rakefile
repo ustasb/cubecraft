@@ -9,7 +9,7 @@ end
 
 task :build_public => [:build_dist] do
   system("rm -rf public && mkdir public")
-  system("cp -r src/css src/dist src/textures src/vendor src/index.html public")
+  system("cp -r src/css src/dist src/img src/vendor src/index.html public")
 end
 
 task :docker_build_dist do
