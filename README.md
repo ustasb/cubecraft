@@ -1,6 +1,6 @@
 # Cubecraft
 
-[ustasb.com/cubecraft](http://ustasb.com/cubecraft) (Only tested in **Chrome!**)
+[brianustas.com/cubecraft](http://brianustas.com/cubecraft) (Only tested in **Chrome!**)
 
 A simple voxel engine I created for my CS 4300: Computer Graphics course.
 It's not the prettiest code!
