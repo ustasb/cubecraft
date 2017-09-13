@@ -1,13 +1,14 @@
 # Cubecraft
 
-[brianustas.com/cubecraft](http://brianustas.com/cubecraft) (Only tested in **Chrome!**)
+- [brianustas.com/cubecraft](http://brianustas.com/cubecraft/) (tested in Chrome)
+- Initial release: 12/02/13
+- Author: [Brian Ustas](http://brianustas.com)
 
 A simple voxel engine I created for my CS 4300: Computer Graphics course.
+
 It's not the prettiest code!
 
 Texture Credit: John Smith Legacy v1.0.2 Minecraft Texture Pack - http://jslegacy.com
-
-Initial release: 12/02/13
 
 ## Controls
 
