@@ -4,7 +4,7 @@
 - Initial release: 12/02/13
 - Author: [Brian Ustas](http://brianustas.com)
 
-A simple voxel engine I created for my CS 4300: Computer Graphics course.
+A simple voxel engine written with raw WebGL that I created for my CS 4300: Computer Graphics course.
 
 It's not the prettiest code!
 
