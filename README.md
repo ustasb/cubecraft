@@ -1,6 +1,6 @@
 # Cubecraft
 
-- [brianustas.com/cubecraft](http://brianustas.com/cubecraft/) (tested in Chrome)
+- [brianustas.com/cubecraft/](http://brianustas.com/cubecraft/) (tested in Chrome)
 - Initial release: 12/02/13
 - Author: [Brian Ustas](http://brianustas.com)
 
