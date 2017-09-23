@@ -18,8 +18,7 @@ html, body {
 #facebook-like-button {
   position: absolute;
   top: 20px;
-  right: 0;
-  width: 90px;
+  right: 20px;
   overflow: hidden;
 }
 
