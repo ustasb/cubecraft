@@ -6,8 +6,6 @@
 
 A simple voxel engine written with raw WebGL that I created for my CS 4300: Computer Graphics course.
 
-It's not the prettiest code!
-
 Texture Credit: John Smith Legacy v1.0.2 Minecraft Texture Pack - http://jslegacy.com
 
 ## Controls
