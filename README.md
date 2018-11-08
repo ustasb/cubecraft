@@ -8,6 +8,8 @@ A simple voxel engine written with raw WebGL that I created for my CS 4300: Comp
 
 Texture Credit: John Smith Legacy v1.0.2 Minecraft Texture Pack - http://jslegacy.com
 
+![](https://github.com/ustasb/cubecraft/blob/master/cubecraft.jpg)
+
 ## Controls
 
 - Fly through the world using WASD, Shift (fly down), Space (fly up) and your mouse.
